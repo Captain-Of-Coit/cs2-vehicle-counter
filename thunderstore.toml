@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "CaptainOfCoit"
 name = "VehicleCounter"
-versionNumber = "0.1.0"
+versionNumber = "0.2.0"
 description = "Example mod description"
 websiteUrl = "https://thunderstore.io"
 containsNsfwContent = false
