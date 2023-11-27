@@ -1,16 +1,17 @@
-[config]
+﻿[config]
 schemaVersion = "0.0.1"
 
 [package]
 namespace = "CaptainOfCoit"
-name = "MyCoolMod"
+name = "VehicleCounter"
 versionNumber = "0.1.0"
 description = "Example mod description"
 websiteUrl = "https://thunderstore.io"
 containsNsfwContent = false
 
 [package.dependencies]
-# AuthorName-PackageName = "0.0.1"
+BepInEx-BepInExPack = "5.4.2100"
+CaptainOfCoit-HookUI = "0.3.0"
 
 [build]
 icon = "./icon.png"

@@ -1,25 +1,18 @@
-﻿using System.IO.Compression;
-using System.IO;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using BepInEx;
 using HarmonyLib;
-using System.Collections.Generic;
-using System.Text;
+using HookUILib.Core;
 using UnityEngine;
 
 #if BEPINEX_V6
     using BepInEx.Unity.Mono;
 #endif
 
-namespace MyCoolMod
-{
+namespace VehicleCounter {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-    public class Plugin : BaseUnityPlugin
-    {
-        private void Awake()
-        {
+    public class Plugin : BaseUnityPlugin {
+        private void Awake() {
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
             var harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID + "_Cities2Harmony");
@@ -31,11 +24,14 @@ namespace MyCoolMod
                 Logger.LogInfo($"Patched method: {patchedMethod.Module.Name}:{patchedMethod.Name}");
             }
         }
+    }
+    public class VehicleCounterUI : UIExtension {
+        public new readonly string extensionID = "example.vehicle_counter";
+        public new readonly string extensionContent;
+        public new readonly ExtensionType extensionType = ExtensionType.Panel;
 
-        // Keep in mind, Unity UI is immediate mode, so OnGUI is called multiple times per frame
-        // https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnGUI.html
-        private void OnGUI() {
-            GUI.Label(new Rect(10, 10, 300, 20), $"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+        public VehicleCounterUI() {
+            this.extensionContent = this.LoadEmbeddedResource("VehicleCounter.dist.bundle.js");
         }
     }
 }

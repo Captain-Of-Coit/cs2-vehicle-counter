@@ -24,6 +24,10 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21.1.0'
       - name: Build (BepInEx ${{ matrix.bepinex-version }})
         run: make package-unix BEPINEX_VERSION=${{ matrix.bepinex-version }}
       - name: Upload Artifact (BepInEx ${{ matrix.bepinex-version }})
